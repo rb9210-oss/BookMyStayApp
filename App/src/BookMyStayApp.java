@@ -1,38 +1,105 @@
 /**
- * Book My Stay Application
- *
- * This class serves as the entry point for the Hotel Booking Management System.
- * It demonstrates the basic structure of a Java application including
- * the main method and console output.
- *
- * The application prints a welcome message along with the system name
- * and version information.
+ * Book My Stay Application - Use Case 2
+ * Demonstrates abstraction, inheritance, polymorphism,
+ * and static room availability.
  *
  * @author YourName
  * @version 1.0
  */
+
+// Abstract Room class
+abstract class Room {
+    protected String roomType;
+    protected int beds;
+    protected double price;
+
+    public Room(String roomType, int beds, double price) {
+        this.roomType = roomType;
+        this.beds = beds;
+        this.price = price;
+    }
+
+    // Abstract method
+    public abstract void displayDetails();
+}
+
+// Single Room class
+class SingleRoom extends Room {
+
+    public SingleRoom() {
+        super("Single Room", 1, 2000.0);
+    }
+
+    @Override
+    public void displayDetails() {
+        System.out.println("Room Type: " + roomType);
+        System.out.println("Beds: " + beds);
+        System.out.println("Price: ₹" + price);
+    }
+}
+
+// Double Room class
+class DoubleRoom extends Room {
+
+    public DoubleRoom() {
+        super("Double Room", 2, 3500.0);
+    }
+
+    @Override
+    public void displayDetails() {
+        System.out.println("Room Type: " + roomType);
+        System.out.println("Beds: " + beds);
+        System.out.println("Price: ₹" + price);
+    }
+}
+
+// Suite Room class
+class SuiteRoom extends Room {
+
+    public SuiteRoom() {
+        super("Suite Room", 3, 6000.0);
+    }
+
+    @Override
+    public void displayDetails() {
+        System.out.println("Room Type: " + roomType);
+        System.out.println("Beds: " + beds);
+        System.out.println("Price: ₹" + price);
+    }
+}
+
+// Main Application Class
 public class BookMyStayApp {
 
-    /**
-     * Main method - Entry point of the application.
-     * The JVM starts execution from here.
-     *
-     * @param args Command-line arguments (not used here)
-     */
     public static void main(String[] args) {
 
-        // Application Name and Version
-        String appName = "Book My Stay - Hotel Booking System";
-        String version = "Version 1.0";
+        // Polymorphic Room objects
+        Room single = new SingleRoom();
+        Room doubleRoom = new DoubleRoom();
+        Room suite = new SuiteRoom();
 
-        // Welcome Message
-        System.out.println("======================================");
-        System.out.println(" Welcome to " + appName);
-        System.out.println(" " + version);
-        System.out.println("======================================");
+        // Static Availability
+        int singleAvailable = 5;
+        int doubleAvailable = 3;
+        int suiteAvailable = 2;
 
-        // Closing Message
-        System.out.println("Application started successfully.");
-        System.out.println("Thank you for using Book My Stay!");
+        System.out.println("========== Room Availability ==========");
+
+        // Single Room
+        single.displayDetails();
+        System.out.println("Available: " + singleAvailable);
+        System.out.println("--------------------------------------");
+
+        // Double Room
+        doubleRoom.displayDetails();
+        System.out.println("Available: " + doubleAvailable);
+        System.out.println("--------------------------------------");
+
+        // Suite Room
+        suite.displayDetails();
+        System.out.println("Available: " + suiteAvailable);
+        System.out.println("--------------------------------------");
+
+        System.out.println("=======================================");
     }
 }
